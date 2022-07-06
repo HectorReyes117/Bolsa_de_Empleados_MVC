@@ -1,0 +1,873 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Korzh.EasyQuery.Linq</name>
+    </assembly>
+    <members>
+        <member name="T:Korzh.EasyQuery.ContextLoadingMapper">
+            <summary>
+            Class ContextLoadingMapper.
+            </summary>
+        </member>
+        <member name="P:Korzh.EasyQuery.ContextLoadingMapper.TypeMapper">
+            <summary>
+            Gets or sets the type mapper.
+            </summary>
+            <value>The type mapper.</value>
+        </member>
+        <member name="P:Korzh.EasyQuery.ContextLoadingMapper.PropertyMapper">
+            <summary>
+            Gets or sets the property mapper.
+            </summary>
+            <value>The property mapper.</value>
+        </member>
+        <member name="T:Korzh.EasyQuery.Linq.EntityLinqExtensions">
+            <summary>
+            Contains several useful extensions for types processing and LINQ generation
+            </summary>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.EntityLinqExtensions.LoadFromType(Korzh.EasyQuery.Entity,System.Type,System.String,Korzh.EasyQuery.Entity,System.Collections.Generic.List{System.Type})">
+            <summary>
+            Fills the type information in some Entity object from a specified type.
+            </summary>
+            <param name="entity">The entity.</param>
+            <param name="entityType">The entity to fill type info from.</param>
+            <param name="entityName">The name of the entity.</param>
+            <param name="parent">The parent entity.</param>
+            <param name="ignoredTypes">The list of types to ignore.</param>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.EntityLinqExtensions.LoadFromProperty(Korzh.EasyQuery.EntityAttr,System.Reflection.PropertyInfo,Korzh.EasyQuery.Entity)">
+            <summary>
+            Fills type information in some EntityAttr object from a specified type. 
+            </summary>
+            <param name="attr">The attribute.</param>
+            <param name="propInfo">The property information.</param>
+            <param name="parent">The parent.</param>
+        </member>
+        <member name="T:Korzh.EasyQuery.Linq.EntityTypeLoader">
+            <summary>
+            Represents the class which loads type information from some type.
+            </summary>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.EntityTypeLoader.LoadEntityFromType(Korzh.EasyQuery.Entity,System.Type,System.String,Korzh.EasyQuery.Entity,System.Collections.Generic.List{System.Type})">
+            <summary>
+            Fills entity type info from some type.
+            </summary>
+            <param name="entity">An instance of Entity class</param>
+            <param name="type">The type to load information from.</param>
+            <param name="entityName">The name of the entity</param>
+            <param name="parent">The parent entity.</param>
+            <param name="processedTypes">List of types to ignore (to prevent loops).</param>
+        </member>
+        <member name="T:Korzh.EasyQuery.Linq.EntityAttrTypeLoader">
+            <summary>
+            Represents one entity attribute of data model.
+            </summary>
+            <remarks>
+            </remarks>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.EntityAttrTypeLoader.LoadAttrFromProperty(Korzh.EasyQuery.EntityAttr,System.Reflection.PropertyInfo,Korzh.EasyQuery.Entity)">
+            <summary>
+            Fills the content of entity attribute by some property (specified by PropertyInfo object).
+            </summary>
+            <param name="attr">An EntityAttr object in which we are going to fill the type info.</param>
+            <param name="property">The property.</param>
+            <param name="parent">The parent.</param>
+        </member>
+        <member name="T:Korzh.EasyQuery.Linq.LinqBuilderExtensions">
+            <summary>
+            Exposes some extension methods for LINQ querying
+            </summary>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.LinqBuilderExtensions.DynamicQuery``1(System.Collections.Generic.IEnumerable{``0},Korzh.EasyQuery.Query)">
+            <summary>
+            Filters a sequence of values based on the condition specified by the query.
+            </summary>
+            <typeparam name="T">Any type</typeparam>
+            <param name="source">The source - some IEnumerable object.</param>
+            <param name="query">The query - a <see cref="T:Korzh.EasyQuery.Query" /> object.</param>
+            <returns>A IEnumerable&lt;T&gt; that contains elements from the input sequence that satisfy the conditions defined in query.</returns>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.LinqBuilderExtensions.DynamicQuery``1(System.Linq.IQueryable{``0},Korzh.EasyQuery.Query,System.String,System.Boolean,Korzh.EasyQuery.QueryBuilderOptions)">
+            <summary>
+            Filters a sequence of values based on the condition specified by the query.
+            </summary>
+            <typeparam name="TEntity">Some entity type</typeparam>
+            <param name="source">The source - some IQueryable object.</param>
+            <param name="query">The query - a <see cref="T:Korzh.EasyQuery.Query" /> object.</param>
+            <param name="orderByProperty">The name of the property to order by the result list.</param>
+            <param name="descending">if set to <c>true</c> then we use descending order.</param>
+            <param name="options">The buillder's options.</param>
+            <returns>A IQueryable&lt;T&gt; that contains elements from the input sequence that satisfy the conditions defined in query.</returns>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.LinqBuilderExtensions.DynamicQuery``1(System.Linq.IQueryable{``0},Korzh.EasyQuery.Linq.LinqQueryBuilder,System.String,System.Boolean,Korzh.EasyQuery.QueryBuilderOptions)">
+            <summary>
+            Filters a sequence of values based on the LinQueryBuilder.
+            </summary>
+            <typeparam name="TEntity">Some entity type</typeparam>
+            <param name="source">The source - some IQueryable object.</param>
+            <param name="builder">An instance of LinqQueryBuilder.</param>
+            <param name="orderByProperty">The name of the property to order by the result list.</param>
+            <param name="descending">if set to <c>true</c> then we use descending order.</param>
+            <param name="options">The builder's options.</param>
+            <returns>A IQueryable&lt;T&gt; that contains elements from the input sequence that satisfy the conditions defined in query.</returns>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.LinqBuilderExtensions.FullTextSearchQuery``1(System.Collections.Generic.IEnumerable{``0},System.String,Korzh.EasyQuery.Linq.FullTextSearchOptions)">
+            <summary>
+            Filters a sequence of values based on a fulltext search predicate 
+            </summary>
+            <typeparam name="T">Any type</typeparam>
+            <param name="source">The source - some IQueryable object.</param>
+            <param name="text">The text - meaning of the search</param>
+            <param name="options">The options for full-text search</param>
+            <returns></returns>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.LinqBuilderExtensions.FullTextSearchQuery``1(System.Linq.IQueryable{``0},System.String,Korzh.EasyQuery.Linq.FullTextSearchOptions)">
+            <summary>
+            Filters a sequence of values based on a fulltext search predicate 
+            </summary>
+            <typeparam name="T">Any type</typeparam>
+            <param name="source">The source - some IQueryable object.</param>
+            <param name="text">The text - meaning of the search</param>
+            <param name="options">The options for full-text search</param>
+            <returns></returns>
+        </member>
+        <member name="T:Korzh.EasyQuery.Linq.FullTextSearchOptions">
+            <summary>
+            Contains options for full text search
+            </summary>
+        </member>
+        <member name="P:Korzh.EasyQuery.Linq.FullTextSearchOptions.Filter">
+            <summary>
+            Lamda expression, which filters properties to use in full text search
+            </summary>
+        </member>
+        <member name="P:Korzh.EasyQuery.Linq.FullTextSearchOptions.OrderBy">
+            <summary>
+            The name of the property to order by the result list
+            </summary>
+        </member>
+        <member name="P:Korzh.EasyQuery.Linq.FullTextSearchOptions.IsDescendingOrder">
+            <summary>
+            if set to <c>true</c> then we use descending order
+            </summary>
+        </member>
+        <member name="P:Korzh.EasyQuery.Linq.FullTextSearchOptions.Depth">
+            <summary>
+            Depth of full text search. 
+            </summary>
+        </member>
+        <member name="T:Korzh.EasyQuery.Linq.LinqQueryBuilder">
+            <summary>
+            Builds Linq expressions
+            </summary>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.LinqQueryBuilder.#ctor(Korzh.EasyQuery.Query)">
+            <summary>
+            This constructor overload allows only Build generic method to be used in building queries because no context is specified and required for it
+            </summary>
+            <param name="query">The query.</param>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.LinqQueryBuilder.#ctor(System.Object,Korzh.EasyQuery.Query)">
+            <summary>
+            This constructor overload allows only Build generic method to be used in building queries because no context is specified and required for it
+            </summary>
+            <param name="context">The context.</param>
+            <param name="query">The query.</param>
+        </member>
+        <member name="P:Korzh.EasyQuery.Linq.LinqQueryBuilder.Query">
+            <summary>
+            Gets the query this builder is defined for
+            </summary>
+            <value>The model.</value>
+        </member>
+        <member name="P:Korzh.EasyQuery.Linq.LinqQueryBuilder.Result">
+            <summary>
+            Gets the result object
+            </summary>
+        </member>
+        <member name="F:Korzh.EasyQuery.Linq.LinqQueryBuilder.propertyChain">
+            <summary>
+            Stores the names of created properties in constructed types
+            </summary>
+            <example>CustomerId in 'Order' becomes Order_CustomerId in 'Order_Employee123' </example>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.LinqQueryBuilder.CreateKey(System.String,System.String)">
+            <summary>
+            Creates the key for the propertyChain dictionary
+            </summary>
+            <param name="type"></param>
+            <param name="property"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.LinqQueryBuilder.AddPropertyLink(System.String,System.String,System.String,System.String)">
+            <summary>
+            Adds a link indicating the new property name in constructed type
+            </summary>
+            <param name="currentType"></param>
+            <param name="currentProperty"></param>
+            <param name="nextType"></param>
+            <param name="nextProperty"></param>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.LinqQueryBuilder.GetPropertyForType(System.String,System.String,System.String)">
+            <summary>
+            Gets the property name in the specified type 
+            </summary>
+            <param name="baseType"></param>
+            <param name="baseProperty"></param>
+            <param name="type"></param>
+            <returns></returns>
+            <example>Returns Order_CusomerId if called like GetPropertyForType(Order,CustomerId,Order_Employee123)</example>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.LinqQueryBuilder.GetKeyForType(System.String,System.String)">
+            <summary>
+            Gets the propertyChain key for specified baseKey and type
+            </summary>
+            <param name="baseKey"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.LinqQueryBuilder.GetLastKey(System.String)">
+            <summary>
+            Gets the last key in the propertyChain for the specified base key
+            </summary>
+            <param name="baseKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.LinqQueryBuilder.GetLastPropertyName(System.Reflection.PropertyInfo)">
+            <summary>
+            Gets the property name for last key in the propertyChain for the specified property
+            </summary>
+            <param name="pi">The PropertyInfo.</param>
+            <returns>System.String</returns>
+        </member>
+        <member name="F:Korzh.EasyQuery.Linq.LinqQueryBuilder.usedAttributes">
+            <summary>
+            Attributes used in both query columns and conditions
+            </summary>
+        </member>
+        <member name="P:Korzh.EasyQuery.Linq.LinqQueryBuilder.MergeStrategy">
+            <summary>
+            Strategy for merging types in Join operations
+            </summary>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.LinqQueryBuilder.MergeTypes(System.Type,System.Type,System.Int32)">
+            <summary>
+            Creates the new type which consists of all properties of the used types
+            </summary>
+            <param name="type1"></param>
+            <param name="type2"></param>
+            <param name="queryHash"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.LinqQueryBuilder.CreatePropertyName(System.Reflection.PropertyInfo)">
+            <summary>
+            Creates the new property name for use in MergeTypes
+            </summary>
+            <param name="pi"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Korzh.EasyQuery.Linq.LinqQueryBuilder.tree">
+            <summary>
+            Tree which if created from EntityGraph
+            </summary>
+        </member>
+        <member name="F:Korzh.EasyQuery.Linq.LinqQueryBuilder.whereType">
+            <summary>
+            Types for the respective clauses 
+            </summary>
+        </member>
+        <member name="F:Korzh.EasyQuery.Linq.LinqQueryBuilder.selectType">
+            <summary>
+            Types for the respective clauses 
+            </summary>
+        </member>
+        <member name="F:Korzh.EasyQuery.Linq.LinqQueryBuilder.groupingType">
+            <summary>
+            Types for the respective clauses 
+            </summary>
+        </member>
+        <member name="F:Korzh.EasyQuery.Linq.LinqQueryBuilder.keyType">
+            <summary>
+            Types for the respective clauses 
+            </summary>
+        </member>
+        <member name="F:Korzh.EasyQuery.Linq.LinqQueryBuilder.conditionParameter">
+            <summary>
+            Parameter of the current condition type
+            </summary>
+        </member>
+        <member name="P:Korzh.EasyQuery.Linq.LinqQueryBuilder.SelectDistinct">
+            <summary>
+            Gets or sets a value indicating whether the result set must not contain duplicates.
+            </summary>
+            <value>
+            	<see langword="true"/> whether the result set must not contain duplicates; otherwise, <see langword="false"/>.
+            </value>
+        </member>
+        <member name="P:Korzh.EasyQuery.Linq.LinqQueryBuilder.StatementType">
+            <summary>
+            Type of result set
+            </summary>
+            <value>The type of the result.</value>C:\Projects\EasyQuery\EasyQuery.Kernel\src\Korzh.EasyQuery\BaseQueryBuilder.cs
+        </member>
+        <member name="P:Korzh.EasyQuery.Linq.LinqQueryBuilder.Options">
+            <summary>
+            Gets or sets the builder's options.
+            </summary>
+            <value>The options.</value>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.LinqQueryBuilder.Build">
+            <summary>
+            Builds the query.
+            </summary>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.LinqQueryBuilder.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+        </member>
+        <member name="P:Korzh.EasyQuery.Linq.LinqQueryBuilder.CanBuild">
+            <summary>
+            Determines whether there is enough information to build the query
+            </summary>
+        </member>
+        <member name="P:Korzh.EasyQuery.Linq.LinqQueryBuilder.Take">
+            <summary>
+            Gets or sets the number of items that will be taken from result set.
+            </summary>
+            <value>The number of items to be taken.</value>
+        </member>
+        <member name="P:Korzh.EasyQuery.Linq.LinqQueryBuilder.Skip">
+            <summary>
+            Gets or sets the number of items that will be skipped from result set.
+            </summary>
+            <value>The number of items to be skipped.</value>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.LinqQueryBuilder.BuildIEnumerable(System.Object)">
+            <summary>
+            Builds IEnumerable expression for use in Linq2Objects scenarios, in other cases consider using Build() method for building IQueryable expression
+            </summary>
+        </member>
+        <member name="T:Korzh.EasyQuery.Linq.LinqQueryBuilder.BuilderResult`1">
+            <summary>
+            Represents result of LinqQueryBuilder work
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.LinqQueryBuilder.BuilderResult`1.#ctor(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Korzh.EasyQuery.Linq.LinqQueryBuilder.BuilderResult`1"/> class.
+            </summary>
+            <param name="whereExpression">The where expression.</param>
+        </member>
+        <member name="P:Korzh.EasyQuery.Linq.LinqQueryBuilder.BuilderResult`1.WhereExpression">
+            <summary>
+            Gets the where expression.
+            </summary>
+            <value>The where expression.</value>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.LinqQueryBuilder.Build``1">
+            <summary>
+            Builds query and returns the expression inside ResultObject structure.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns>ResultObject&lt;T&gt;.</returns>
+        </member>
+        <member name="T:Korzh.EasyQuery.Linq.MergeTypesStrategy">
+            <summary>
+            Represents the strategy of merging of two types
+            </summary>
+        </member>
+        <member name="F:Korzh.EasyQuery.Linq.MergeTypesStrategy.AllProperties">
+            <summary>
+            All properties in both types will go into result type
+            </summary>
+        </member>
+        <member name="F:Korzh.EasyQuery.Linq.MergeTypesStrategy.UsedProperties">
+            <summary>
+            Only used properties will be merged
+            </summary>
+        </member>
+        <member name="T:Korzh.EasyQuery.Linq.PropertyInfoExtensions">
+            <summary>
+            Static class whic contains extension methods for PropertyInfo class
+            </summary>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.PropertyInfoExtensions.Mapped(System.Collections.Generic.IEnumerable{System.Reflection.PropertyInfo})">
+            <summary>
+            Filters the list of properties (defined by source parameter) to return only those which does not have "NotMapped" attribute.
+            </summary>
+            <param name="source">The source list of properties.</param>
+            <returns>IEnumerable&lt;PropertyInfo&gt;.</returns>
+        </member>
+        <member name="T:Korzh.EasyQuery.Linq.LinqStatement">
+            <summary>
+            Represents the result of performing Build function call of LinqQueryBuilder.
+            </summary>
+        </member>
+        <member name="P:Korzh.EasyQuery.Linq.LinqStatement.ResultQueryable">
+            <summary>
+            Gets or sets the queryable result object.
+            </summary>
+            <value>The queryable object.</value>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.LinqStatement.GetStatement">
+            <summary>
+            Returns the statement (not used in case of LINQ queries).
+            </summary>
+            <returns>System.String.</returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="T:Korzh.EasyQuery.Linq.LinqQueryBuilderError">
+            <summary>
+            Class LinqQueryBuilderError.
+            </summary>
+            <seealso cref="T:System.Exception" />
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.LinqQueryBuilderError.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Korzh.EasyQuery.Linq.LinqQueryBuilderError" /> class.
+            </summary>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="T:Korzh.EasyQuery.Linq.ModelLinqExtensions">
+            <summary>
+            Contains different extension functions for loading data model from types.
+            </summary>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.ModelLinqExtensions.LoadFromEntityType(Korzh.EasyQuery.DataModel,System.Type)">
+            <summary>
+            Loads model from some type (class).
+            All properties of this class with primitive types will be added as attributes of the root entity.
+            All complex type properties - as sub-entities and so on recursively .
+            </summary>
+            <param name="model">A DataModel object which we are going to fill with the data by some type.</param>
+            <param name="type">The type (class) of some model's entity.</param>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.ModelLinqExtensions.LoadFromEntityType(Korzh.EasyQuery.DataModel,System.Type,Korzh.EasyQuery.Linq.ContextLoadingOptions)">
+            <summary>
+            Loads model from some type (class).
+            All properties of this class with primitive types will be added as attributes of the root entity.
+            All complex type properties - as sub-entities and so on recursively .
+            </summary>
+            <param name="model">A DataModel object which we are going to fill with the data by some type.</param>
+            <param name="type">The type (class) of some model's entity.</param>
+            <param name="loadingOptions">Some loading options</param>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.ModelLinqExtensions.LoadFromContextType(Korzh.EasyQuery.DataModel,System.Type)">
+            <summary>
+            Loads model from some context class.
+            All IEnumerable properties of this class will be represented as entities in result model.
+            All primitive type properties of generic type parameter class for each such IEnumerable will be added as attributes of corresponding entity.
+            </summary>
+            <param name="model">A DataModel object which we are going to fill with the data by some context type.</param>
+            <param name="context">The type of the context.</param>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.ModelLinqExtensions.LoadFromContextType(Korzh.EasyQuery.DataModel,System.Type,Korzh.EasyQuery.Linq.ContextLoadingOptions)">
+            <summary>
+            Loads model from some context class.
+            All IEnumerable properties of this class will be represented as entities in result model.
+            All primitive type properties of generic type parameter class for each such IEnumerable will be added as attributes of corresponding entity.
+            </summary>
+            <param name="model">A DataModel object which we are going to fill with the data by some context type.</param>
+            <param name="context">The type of the context.</param>
+            <param name="loadingOptions">Some model loading options</param>
+        </member>
+        <member name="T:Korzh.EasyQuery.Linq.ObjectModelLoaderError">
+            <summary>
+            Exception class for data model errors
+            </summary>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.ObjectModelLoaderError.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Korzh.EasyQuery.Linq.ObjectModelLoaderError"/> class.
+            </summary>
+            <param name="message">Message.</param>
+        </member>
+        <member name="T:Korzh.EasyQuery.Linq.ObjectModelLoader">
+            <summary>
+            Represents a data model loader
+            </summary>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.ObjectModelLoader.LoadModelFromType(Korzh.EasyQuery.DataModel,System.Type)">
+            <summary>
+            Loads model from some type (class).
+            All properties of this class with primitive types will be added as attributes of the root entity.
+            All complex type properties - as sub-entities and so on recursively .
+            </summary>
+            <param name="model">A DataModel object which we are going to fill with the data by some context type.</param>
+            <param name="type">The type (class) to load the model from.</param>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.ObjectModelLoader.LoadFromEntityType(Korzh.EasyQuery.DataModel,System.Type,Korzh.EasyQuery.Linq.ContextLoadingOptions)">
+            <summary>
+            Loads model from some type (class).
+            All properties of this class with primitive types will be added as attributes of the root entity.
+            All complex type properties - as sub-entities and so on recursively .
+            </summary>
+            <param name="model">A DataModel object which we are going to fill with the data by some context type.</param>
+            <param name="type">The type (class) to load the model from.</param>
+            <param name="loadingOptions">Different loading options.</param>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.ObjectModelLoader.LoadFromContext(Korzh.EasyQuery.DataModel,System.Type)">
+            <summary>
+            Loads model from a context class.
+            </summary>
+            <param name="model">A DataModel object which we are going to fill with the data by some context type.</param>
+            <param name="type">The type of the context class.</param>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.ObjectModelLoader.LoadFromContextType(Korzh.EasyQuery.DataModel,System.Type,Korzh.EasyQuery.Linq.ContextLoadingOptions)">
+            <summary>
+            Loads model from context class.
+            </summary>
+            <param name="model">A DataModel object which we are going to fill with the data by some context type.</param>
+            <param name="type">The type of the context class.</param>
+            <param name="options">Different options.</param>
+        </member>
+        <member name="M:Korzh.EasyQuery.Linq.ObjectModelLoader.GetCollectionName(System.Type)">
+            <summary>
+            Used to get the name of the collection in context
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Korzh.EasyQuery.Linq.ContextLoadingOptions">
+            <summary>
+            Represents different options used during loading model from context 
+            </summary>
+        </member>
+        <member name="F:Korzh.EasyQuery.Linq.ContextLoadingOptions.Default">
+            <summary>
+            The default set of options
+            </summary>
+        </member>
+        <member name="F:Korzh.EasyQuery.Linq.ContextLoadingOptions.JoinUsingPrimitiveTypes">
+            <summary>
+            Try to join <see cref="T:System.Type"/>s using primitive type properties as foreign keys (such as OrderID). Navigation properties are used by default
+            </summary>
+        </member>
+        <member name="F:Korzh.EasyQuery.Linq.ContextLoadingOptions.ScanOnlyQueryable">
+            <summary>
+            Scan only properties that implement IQueryable interface. By default all IEnumerable are used
+            </summary>
+        </member>
+        <member name="F:Korzh.EasyQuery.Linq.ContextLoadingOptions.ProcessInheritance">
+            <summary>
+            Include ancestor's properties
+            </summary>
+        </member>
+        <member name="F:Korzh.EasyQuery.Linq.ContextLoadingOptions.LeaveNonLinqOperators">
+            <summary>
+            Leave in loaded model the operators which are not supported in LINQ queries.
+            </summary>
+        </member>
+        <member name="T:Korzh.EasyQuery.LinqTypeExtensions">
+            <summary>
+            Contains different extension functions for working with refrection and types
+            </summary>
+        </member>
+        <member name="M:Korzh.EasyQuery.LinqTypeExtensions.GetInterfaces(System.Type)">
+            <summary>
+            Gets the list of interfaces for the specified type.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>IEnumerable&lt;Type&gt;.</returns>
+        </member>
+        <member name="M:Korzh.EasyQuery.LinqTypeExtensions.IsGenericEnumerable(System.Type)">
+            <summary>
+            Determines whether the specified type is a generic enumerable.
+            </summary>
+            <param name="type">The type.</param>
+            <returns><c>true</c> if the type is a generic enumerable; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Korzh.EasyQuery.LinqTypeExtensions.GetGenericArguments(System.Type)">
+            <summary>
+            Gets the generic arguments (the list of types) for the specified type.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>The list of generic argument types</returns>
+        </member>
+        <member name="M:Korzh.EasyQuery.LinqTypeExtensions.GetProperty(System.Type,System.String)">
+            <summary>
+            Gets the property info for the specified type and property name.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="name">The property name.</param>
+            <returns>PropertyInfo.</returns>
+        </member>
+        <member name="M:Korzh.EasyQuery.LinqTypeExtensions.GetProperties(System.Type)">
+            <summary>
+            Gets the list of properties for the specified type.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>PropertyInfo[].</returns>
+        </member>
+        <member name="M:Korzh.EasyQuery.LinqTypeExtensions.GetProperties(System.Type,System.Reflection.BindingFlags)">
+            <summary>
+            Gets the list of properties for the specified type.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="bindingFlags">The binding flags.</param>
+            <returns>PropertyInfo[].</returns>
+        </member>
+        <member name="M:Korzh.EasyQuery.LinqTypeExtensions.GetFields(System.Type)">
+            <summary>
+            Gets the list of fields for the specified type.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>FieldInfo[].</returns>
+        </member>
+        <member name="M:Korzh.EasyQuery.LinqTypeExtensions.CreateType(System.Reflection.Emit.TypeBuilder)">
+            <summary>
+            Creates the type.
+            </summary>
+            <param name="builder">The builder.</param>
+            <returns>Type.</returns>
+        </member>
+        <member name="M:Korzh.EasyQuery.LinqTypeExtensions.GetConstructor(System.Type,System.Type[])">
+            <summary>
+            Searches for a public instance constructor whose parameters match the types in
+            the specified array.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="types">The array of parameters' types.</param>
+            <returns>ConstructorInfo.</returns>
+        </member>
+        <member name="M:Korzh.EasyQuery.LinqTypeExtensions.GetMethod(System.Type,System.String)">
+            <summary>
+            Searches for the public method with the specified name.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="methodName">Name of the method.</param>
+            <returns>MethodInfo.</returns>
+        </member>
+        <member name="M:Korzh.EasyQuery.LinqTypeExtensions.GetMethod(System.Type,System.String,System.Type[])">
+            <summary>
+            Searches for the public method with the specified name and argument types
+            </summary>
+            <param name="type">The type.</param>
+            <param name="methodName">Name of the method.</param>
+            <param name="types">The types of the arguments.</param>
+            <returns>MethodInfo.</returns>
+        </member>
+        <member name="M:Korzh.EasyQuery.LinqTypeExtensions.IsEnumerable(System.Type)">
+            <summary>
+            Determines whether the specified type is enumerable (supports <see cref="T:System.Collections.Generic.IEnumerable"/> interface.
+            </summary>
+            <param name="typeToCheck">The type to check.</param>
+            <returns><c>true</c> if the specified type to check is enumerable; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Korzh.EasyQuery.LinqTypeExtensions.IsQueryable(System.Type)">
+            <summary>
+            Determines whether the specified type implements <see cref="T:System.Linq.IQueryable"/> interface.
+            </summary>
+            <param name="typeToCheck">The type to check.</param>
+            <returns><c>true</c> if the specified type implements IQueryable interface; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Korzh.EasyQuery.LinqTypeExtensions.IsEnumerableOfSimpleType(System.Type)">
+            <summary>
+            Determines whether the specified type is an enumerable of some simple type .
+            </summary>
+            <param name="typeToCheck">The type to check.</param>
+            <returns><c>true</c> if the specified type is an enumerable of some simple type; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Korzh.EasyQuery.LinqTypeExtensions.GetDisplayName(System.Reflection.PropertyInfo)">
+            <summary>
+            Returns the display name of the property.
+            This function tries to get the name defined by Display or DisplayName attributes.
+            If any of these attributes is not defined - then the property name is returned.
+            </summary>
+            <param name="pi">The property info.</param>
+            <returns>Display name of the property</returns>
+        </member>
+        <member name="M:Korzh.EasyQuery.LinqTypeExtensions.GetTypeDisplayName(System.Type)">
+            <summary>
+            Gets the display name of the type.
+            This function tries to get the name defined by Entity or EntityName attributes.
+            If any of these attributes is not defined - then the type name is returned.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>Display name of the type.</returns>
+        </member>
+        <member name="M:Korzh.EasyQuery.Services.EasyObjectResultSet.#ctor(Korzh.EasyQuery.Query,Korzh.EasyQuery.Services.ResultSetOptions)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Korzh.EasyQuery.Services.EasyObjectResultSet"/> class.
+            </summary>
+            <param name="query">The query.</param>
+            <param name="options">The options.</param>
+        </member>
+        <member name="M:Korzh.EasyQuery.Services.EasyObjectResultSet.CreateRow(System.Object,System.Collections.Generic.IEnumerable{System.Reflection.PropertyInfo})">
+            <summary>
+            Adds a new row to the result set and fills it with the data from the list of properties.
+            </summary>
+            <param name="item">The object to load property values from.</param>
+            <param name="properties">The list of properties.</param>
+        </member>
+        <member name="T:Korzh.EasyQuery.Services.EasyQueryManagerLinq`1">
+            <summary>
+            Represents an implementation of <see cref="T:Korzh.EasyQuery.Services.EasyQueryManager" />
+            which loads the model from some type and generates LINQ queries.
+            </summary>
+            <typeparam name="T">The type of context class we will build queries over.</typeparam>
+            <seealso cref="T:Korzh.EasyQuery.Services.EasyQueryManager" />
+        </member>
+        <member name="P:Korzh.EasyQuery.Services.EasyQueryManagerLinq`1.ContextResolver">
+            <summary>
+            Gets or sets the context resolver - a function which returns some context object by the model ID.
+            </summary>
+            <value>The context resolver.</value>
+        </member>
+        <member name="M:Korzh.EasyQuery.Services.EasyQueryManagerLinq`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Korzh.EasyQuery.Services.EasyQueryManagerLinq`1" /> class.
+            </summary>
+        </member>
+        <member name="M:Korzh.EasyQuery.Services.EasyQueryManagerLinq`1.#ctor(Korzh.EasyQuery.Services.EasyQueryOptions)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Korzh.EasyQuery.Services.EasyQueryManagerLinq`1"/> class.
+            </summary>
+            <param name="options">Different options of EasyQueryService.</param>
+        </member>
+        <member name="M:Korzh.EasyQuery.Services.EasyQueryManagerLinq`1.#ctor(Korzh.EasyQuery.Services.EasyQueryOptions,System.IServiceProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Korzh.EasyQuery.Services.EasyQueryManagerLinq`1"/> class.
+            </summary>
+            <param name="options">Different options of EasyQueryService.</param>
+            <param name="services">The services.</param>
+        </member>
+        <member name="M:Korzh.EasyQuery.Services.EasyQueryManagerLinq`1.FetchDataCoreAsync">
+            <summary>
+            The actual implemenation of <see cref="M:Korzh.EasyQuery.Services.EasyQueryManagerLinq`1.GetResultSetAsync(System.Object,Korzh.EasyQuery.Services.ResultSetOptions)"/> function.
+            This method generates a LINQ query and executes over the context returned by the context resolver
+            </summary>
+        </member>
+        <member name="M:Korzh.EasyQuery.Services.EasyQueryManagerLinq`1.CreateResultSet(Korzh.EasyQuery.Services.ResultSetOptions)">
+            <summary>
+            Creates result set based on format
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Korzh.EasyQuery.Services.EasyQueryManagerLinq`1.QueryBuilder">
+            <summary>
+            Returns QueryBuilder associated with current Query
+            </summary>
+        </member>
+        <member name="M:Korzh.EasyQuery.Services.EasyQueryManagerLinq`1.GetResultSetAsync(System.Object,Korzh.EasyQuery.Services.ResultSetOptions)">
+            <summary>
+            Gets the result set by the query and some context (e.g. DbContext) object.
+            This method generates LINQ query, executes it over specified context and returns the result as DataSet.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="options">The options.</param>
+            <returns>ResultSet.</returns>
+            <exception cref="T:System.Exception">Wrong context object or result type</exception>
+        </member>
+        <member name="M:Korzh.EasyQuery.Services.EasyQueryManagerLinq`1.CreateQueryBuilderCore">
+            <summary>
+            Returns the query builder. In this particular kind of EasyQueryManager it will be an instance of LinqQueryBuilder.
+            </summary>
+            <returns>IQueryBuilder.</returns>
+        </member>
+        <member name="M:Korzh.EasyQuery.Services.EasyQueryManagerLinq`1.DynamicQuery``1(System.Linq.IQueryable{``0},System.String,System.Boolean)">
+            <summary>
+            Filters a sequence of values based on the query defined in this manager
+            </summary>
+            <param name="source">The source - some IQueryable object.</param>
+            <param name="orderByProperty">The name of the property to order by the result list.</param>
+            <param name="descending">if set to <c>true</c> then we use descending order.</param>
+            <returns>A IQueryable&lt;T&gt; that contains elements from the input sequence that satisfy the conditions defined in query.</returns>
+            <exception cref="T:Korzh.EasyQuery.Services.EasyQueryManagerException">Not a LinqQueryBuilder</exception>
+        </member>
+        <member name="T:Korzh.EasyQuery.Services.EasyQueryOptionsExtensionsLinq">
+            <summary>
+            Contains several extension methods for EasyQueryOptions 
+            which allow to tune up the EasyQuery manager and middleware
+            in case of using it for LINQ queries genereation
+            </summary>
+        </member>
+        <member name="M:Korzh.EasyQuery.Services.EasyQueryOptionsExtensionsLinq.UseEntity``1(Korzh.EasyQuery.Services.EasyQueryOptions,System.Func{Korzh.EasyQuery.Services.EasyQueryManager,System.Collections.Generic.IEnumerable{``0}},System.Action{Korzh.EasyQuery.Services.EntityTypeModelLoaderOptions})">
+            <summary>
+            Registers a model loader which allows to load the model from some type 
+            and a context resolver function which returns an IEnumerable context object.
+            </summary>
+            <typeparam name="T">The type to load the model from</typeparam>
+            <param name="options">An instance of EasyQueryOptions.</param>
+            <param name="contextResolver">The context resolver.</param>
+            <param name="optionsTuner">The tuner for options.</param>
+        </member>
+        <member name="M:Korzh.EasyQuery.Services.EasyQueryOptionsExtensionsLinq.UseEntity``1(Korzh.EasyQuery.Services.EasyQueryOptions,System.Func{Korzh.EasyQuery.Services.EasyQueryManager,System.Linq.IQueryable{``0}},System.Action{Korzh.EasyQuery.Services.EntityTypeModelLoaderOptions})">
+            <summary>
+            Registers a model loader which allows to load the model from some type 
+            and a context resolver function which returns a IQueryable context object
+            </summary>
+            <typeparam name="T">The type to load the model from</typeparam>
+            <param name="options">An instance of EasyQueryOptions.</param>
+            <param name="contextResolver">The context resolver.</param>
+            <param name="optionsTuner">The tuner for options.</param>
+        </member>
+        <member name="T:Korzh.EasyQuery.Services.EntityTypeModelLoaderOptions">
+            <summary>
+            Represents different options for <see cref="T:Korzh.EasyQuery.Services.EntityTypeModelLoader`1" /> class
+            </summary>
+        </member>
+        <member name="P:Korzh.EasyQuery.Services.EntityTypeModelLoaderOptions.SortAlpabetically">
+            <summary>
+            Gets or sets a value indicating wether sort attributes in Alphabetical order
+            </summary>
+        </member>
+        <member name="T:Korzh.EasyQuery.Services.EntityTypeModelLoader`1">
+            <summary>
+            An implementation of <see cref="T:Korzh.EasyQuery.Services.IModelLoader" />
+            which loads the model from some type.
+            </summary>
+            <typeparam name="T">The type to load the model from.</typeparam>
+        </member>
+        <member name="M:Korzh.EasyQuery.Services.EntityTypeModelLoader`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Korzh.EasyQuery.Services.EntityTypeModelLoader`1"/> class.
+            </summary>
+        </member>
+        <member name="M:Korzh.EasyQuery.Services.EntityTypeModelLoader`1.#ctor(Korzh.EasyQuery.Services.EntityTypeModelLoaderOptions)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Korzh.EasyQuery.Services.EntityTypeModelLoader`1"/> class.
+            </summary>
+            <param name="options">The options.</param>
+        </member>
+        <member name="M:Korzh.EasyQuery.Services.EntityTypeModelLoader`1.LoadModelAsync(Korzh.EasyQuery.DataModel,System.String)">
+            <summary>
+            Loads the model
+            </summary>
+            <param name="model">The model.</param>
+            <param name="modelId">The model identifier.</param>
+            <returns><c>true</c> if the model has been loaded successfully. Otherwise - <c>false</c>.</returns>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.EasyQueryManagerLinqResolver`1">
+            <summary>
+            This is an auxiliary class which implements <see cref="T:Korzh.EasyQuery.Services.IEasyQueryManagerResolver" /> interface 
+            to register EasyQueryManagerLinq during the intialization of EasyQuery services.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.EasyQueryManagerLinqResolver`1.GetManager(Korzh.EasyQuery.Services.EasyQueryOptions,System.IServiceProvider)">
+            <summary>
+            Gets the EasyQuery manager.
+            </summary>
+            <param name="options">The options.</param>
+            <param name="services">The services.</param>
+            <returns>EasyQueryManagerBase.</returns>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.EasyQueryServicesBuilderExtensionsLinq">
+            <summary>
+            Contains the extension method for EasyQueryServicesBuilder. 
+            This method is usually called during the registering of EasyQuery's services in DI.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.EasyQueryServicesBuilderExtensionsLinq.UseLinqManager``1(Microsoft.Extensions.DependencyInjection.EasyQueryServicesBuilder)">
+            <summary>
+            Registers EasyQueryManagerLinqResolver in DI container.
+            </summary>
+            <param name="builder">The builder.</param>
+            <returns>Microsoft.Extensions.DependencyInjection.EasyQueryServiceBuilder.</returns>
+        </member>
+    </members>
+</doc>

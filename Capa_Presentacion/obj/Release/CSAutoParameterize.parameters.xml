@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="db_a76d77_bolsadeempleadosEntities-Web.config Connection String" description="db_a76d77_bolsadeempleadosEntities Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="metadata=res://*/Bolsa_de_Empleados.csdl|res://*/Bolsa_de_Empleados.ssdl|res://*/Bolsa_de_Empleados.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=SQL5085.site4now.net;initial catalog=db_a76d77_bolsadeempleados;user id=db_a76d77_bolsadeempleados_admin;password=web12345678;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Hector\\source\\repos\\Bolsa_de_Empleos\\Capa_Presentacion\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='db_a76d77_bolsadeempleadosEntities']/@connectionString" />
+  </parameter>
+</parameters>

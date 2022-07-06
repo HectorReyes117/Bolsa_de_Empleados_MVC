@@ -1,0 +1,15 @@
+C:\Users\Hector\source\repos\Bolsa_de_Empleos\Capa_Datos\bin\Release\Capa_Datos.dll.config
+C:\Users\Hector\source\repos\Bolsa_de_Empleos\Capa_Datos\bin\Release\Capa_Datos.dll
+C:\Users\Hector\source\repos\Bolsa_de_Empleos\Capa_Datos\bin\Release\Capa_Datos.pdb
+C:\Users\Hector\source\repos\Bolsa_de_Empleos\Capa_Datos\bin\Release\Capa_Entidad.dll
+C:\Users\Hector\source\repos\Bolsa_de_Empleos\Capa_Datos\bin\Release\EntityFramework.dll
+C:\Users\Hector\source\repos\Bolsa_de_Empleos\Capa_Datos\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Hector\source\repos\Bolsa_de_Empleos\Capa_Datos\bin\Release\Capa_Entidad.pdb
+C:\Users\Hector\source\repos\Bolsa_de_Empleos\Capa_Datos\bin\Release\Capa_Entidad.dll.config
+C:\Users\Hector\source\repos\Bolsa_de_Empleos\Capa_Datos\bin\Release\EntityFramework.xml
+C:\Users\Hector\source\repos\Bolsa_de_Empleos\Capa_Datos\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Hector\source\repos\Bolsa_de_Empleos\Capa_Datos\obj\Release\Capa_Datos.csproj.AssemblyReference.cache
+C:\Users\Hector\source\repos\Bolsa_de_Empleos\Capa_Datos\obj\Release\Capa_Datos.csproj.CoreCompileInputs.cache
+C:\Users\Hector\source\repos\Bolsa_de_Empleos\Capa_Datos\obj\Release\Capa_Datos.csproj.CopyComplete
+C:\Users\Hector\source\repos\Bolsa_de_Empleos\Capa_Datos\obj\Release\Capa_Datos.dll
+C:\Users\Hector\source\repos\Bolsa_de_Empleos\Capa_Datos\obj\Release\Capa_Datos.pdb

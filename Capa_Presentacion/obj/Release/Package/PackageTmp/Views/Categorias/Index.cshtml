@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Capa_Entidad.CATEGORIA>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Categorias</h2>
+<br />
+
+<p>
+    <a class="btn btn-primary" href="@Url.Action("Create","Categorias")"><i class="glyphicon glyphicon-plus"></i> Agregar Categoria</a>
+</p>
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("CATEGORIA")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CATEGORIA1)
+            </td>
+            <td>
+                <a class="btn btn-primary btn-xs" title="Editar" href="@Url.Action("Edit", "Categorias", new { id = item.id})"> <i class="glyphicon glyphicon-edit"></i>Editar</a>
+                <a class="btn btn-danger btn-xs" title="Editar" href="@Url.Action("Delete", "Categorias", new { id = item.id})"> <i class="glyphicon glyphicon-trash"></i>Borrar</a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+</table>

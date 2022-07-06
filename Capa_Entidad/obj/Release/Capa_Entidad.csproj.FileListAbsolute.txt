@@ -1,0 +1,12 @@
+C:\Users\Hector\source\repos\Bolsa_de_Empleos\Capa_Entidad\bin\Release\Capa_Entidad.dll.config
+C:\Users\Hector\source\repos\Bolsa_de_Empleos\Capa_Entidad\bin\Release\Capa_Entidad.dll
+C:\Users\Hector\source\repos\Bolsa_de_Empleos\Capa_Entidad\bin\Release\Capa_Entidad.pdb
+C:\Users\Hector\source\repos\Bolsa_de_Empleos\Capa_Entidad\bin\Release\EntityFramework.dll
+C:\Users\Hector\source\repos\Bolsa_de_Empleos\Capa_Entidad\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Hector\source\repos\Bolsa_de_Empleos\Capa_Entidad\bin\Release\EntityFramework.xml
+C:\Users\Hector\source\repos\Bolsa_de_Empleos\Capa_Entidad\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Hector\source\repos\Bolsa_de_Empleos\Capa_Entidad\obj\Release\Capa_Entidad.csproj.AssemblyReference.cache
+C:\Users\Hector\source\repos\Bolsa_de_Empleos\Capa_Entidad\obj\Release\Capa_Entidad.csproj.CoreCompileInputs.cache
+C:\Users\Hector\source\repos\Bolsa_de_Empleos\Capa_Entidad\obj\Release\Capa_Entidad.csproj.CopyComplete
+C:\Users\Hector\source\repos\Bolsa_de_Empleos\Capa_Entidad\obj\Release\Capa_Entidad.dll
+C:\Users\Hector\source\repos\Bolsa_de_Empleos\Capa_Entidad\obj\Release\Capa_Entidad.pdb

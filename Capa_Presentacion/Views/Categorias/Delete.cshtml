@@ -1,0 +1,27 @@
+﻿@model Capa_Entidad.CATEGORIA
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<h3>Esta seguro que desea eliminarla?</h3>
+<br />
+<br />
+<div>
+
+    <hr />  
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    <input type="submit" value="Delete" class="btn btn-primary" /> |
+    <a class="btn btn-primary" href="@Url.Action("Index", "Categorias")"><i class="glyphicon glyphicon-menu-left"></i> Regresar al Listado</a>
+</div>
+    }
+</div>

@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_a76d77_bolsadeempleadosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ADMINISTRADOR">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Correo_Administrador" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Contraseña_Administrador" Type="varchar" MaxLength="60" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CATEGORIAS">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CATEGORIA" Type="varchar" MaxLength="60" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DATOS_VACANTE">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Compañia" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="Tipo" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="Posicion" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Ubicacion" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Categoria" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="Descripcion_Trabajo" Type="text" Nullable="false" />
+    <Property Name="Como_Aplicar" Type="text" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NUMERO_DE_PAGINACION">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Numero_de_Paginas" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="POSTER">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Correo_Poster" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Contraseña_Poster" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="Nombre_de_Compañia" Type="varchar" MaxLength="60" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="db_a76d77_bolsadeempleadosModelStoreContainer">
+    <EntitySet Name="ADMINISTRADOR" EntityType="Self.ADMINISTRADOR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CATEGORIAS" EntityType="Self.CATEGORIAS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DATOS_VACANTE" EntityType="Self.DATOS_VACANTE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NUMERO_DE_PAGINACION" EntityType="Self.NUMERO_DE_PAGINACION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="POSTER" EntityType="Self.POSTER" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

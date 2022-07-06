@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="db_a76d77_bolsadeempleadosModelStoreContainer" CdmEntityContainer="db_a76d77_bolsadeempleadosEntities">
+    <EntitySetMapping Name="ADMINISTRADORs">
+      <EntityTypeMapping TypeName="db_a76d77_bolsadeempleadosModel.ADMINISTRADOR">
+        <MappingFragment StoreEntitySet="ADMINISTRADOR">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Correo_Administrador" ColumnName="Correo_Administrador" />
+          <ScalarProperty Name="Contraseña_Administrador" ColumnName="Contraseña_Administrador" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CATEGORIAS">
+      <EntityTypeMapping TypeName="db_a76d77_bolsadeempleadosModel.CATEGORIA">
+        <MappingFragment StoreEntitySet="CATEGORIAS">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="CATEGORIA1" ColumnName="CATEGORIA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DATOS_VACANTE">
+      <EntityTypeMapping TypeName="db_a76d77_bolsadeempleadosModel.DATOS_VACANTE">
+        <MappingFragment StoreEntitySet="DATOS_VACANTE">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Compañia" ColumnName="Compañia" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Posicion" ColumnName="Posicion" />
+          <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
+          <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+          <ScalarProperty Name="Descripcion_Trabajo" ColumnName="Descripcion_Trabajo" />
+          <ScalarProperty Name="Como_Aplicar" ColumnName="Como_Aplicar" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NUMERO_DE_PAGINACION">
+      <EntityTypeMapping TypeName="db_a76d77_bolsadeempleadosModel.NUMERO_DE_PAGINACION">
+        <MappingFragment StoreEntitySet="NUMERO_DE_PAGINACION">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Numero_de_Paginas" ColumnName="Numero_de_Paginas" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="POSTERs">
+      <EntityTypeMapping TypeName="db_a76d77_bolsadeempleadosModel.POSTER">
+        <MappingFragment StoreEntitySet="POSTER">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Correo_Poster" ColumnName="Correo_Poster" />
+          <ScalarProperty Name="Contraseña_Poster" ColumnName="Contraseña_Poster" />
+          <ScalarProperty Name="Nombre_de_Compañia" ColumnName="Nombre_de_Compañia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

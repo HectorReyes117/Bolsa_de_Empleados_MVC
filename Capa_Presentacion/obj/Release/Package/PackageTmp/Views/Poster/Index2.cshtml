@@ -1,0 +1,162 @@
+﻿@model IEnumerable<Capa_Entidad.DATOS_VACANTE>
+
+@{
+    ViewBag.Title = "Index2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles{
+    <link href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+}
+
+@using (Capa_Datos.db_a76d77_bolsadeempleadosEntities db = new Capa_Datos.db_a76d77_bolsadeempleadosEntities())
+{
+    var categorias = (from datos in db.CATEGORIAS select datos).ToList();
+
+    var d = db.CATEGORIAS.ToList();
+    var solicitud = db.ADMINISTRADORs.ToList();
+
+
+
+    <h2>@ViewBag.categoria</h2>
+
+
+    <table class="table " id="tabledemo">
+        <thead>
+
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ubicacion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Posicion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Compañia)
+                </th>
+                <th></th>
+
+                @foreach (var itera in solicitud)
+                {
+                    if (itera.Correo_Administrador == HttpContext.Current.User.Identity.Name)
+                    {
+                        <th></th>
+                    }
+                }
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            @foreach (var ite in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => ite.Ubicacion)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => ite.Posicion)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => ite.Compañia)
+                    </td>
+
+                    <td>
+                        <a class="btn btn-info" data-toggle="modal" data-target="#@ite.id">
+                            <i class="bi bi-info-circle"></i> Informacion
+
+                        </a>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="@ite.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">@ite.Categoria</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <h1>@ite.Compañia</h1>
+                                        @ite.Ubicacion
+                                        <br />
+                                        @ite.Posicion - @ite.Tipo
+                                        <br />
+                                        <br />
+                                        @ite.Descripcion_Trabajo
+                                        <br />
+                                        <br />
+                                        Como Aplicar?
+                                        <br />
+                                        <br />
+                                        @ite.Como_Aplicar
+                                        <br />
+                                        <br />
+                                        <a href="mailto:@ite.Email?subject=Subject Using Mailto.co.uk&body=Email Using Mailto.co.uk"> @ite.Email</a>
+
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </td>
+
+                    @foreach (var itera in solicitud)
+                    {
+                        if (itera.Correo_Administrador == HttpContext.Current.User.Identity.Name)
+                        {
+                            <td>
+                                <a class="btn btn-primary btn-xs" title="Editar" href="@Url.Action("Editar", "Poster", new { id = ite.id})"> <i class="glyphicon glyphicon-edit"></i> Editar</a>
+                                <a class="btn btn-danger btn-xs" title="Editar" href="@Url.Action("Borrar", "Poster", new { id = ite.id})"> <i class="glyphicon glyphicon-trash"></i> Borrar</a>
+                            </td>
+                        }
+                    }
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+
+
+}
+
+@section scripts{
+    <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $('#tabledemo').DataTable({
+            "pageLength": 20,
+            lengthMenu: [20],
+            "language": {
+                "lengthMenu": "Mostrando _MENU_ registros por pagina",
+                "zeroRecords": "No encontrado  - Lo sentimos",
+                "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                "infoEmpty": "No hay registros disponibles",
+                "infoFiltered": "(filtrado de _MAX_  registros en total)",
+                "search": "Buscar",
+                "next": "Siguiente",
+                "previous": "Anterior",
+
+            },
+            "ordering": false,
+
+
+        });
+    </script>
+}

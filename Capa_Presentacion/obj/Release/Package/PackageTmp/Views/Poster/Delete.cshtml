@@ -1,0 +1,24 @@
+﻿@model Capa_Entidad.DATOS_VACANTE
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h3>Are you sure you want to delete this?</h3>
+<br /><br /><br />
+<div>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-primary" /> |
+        <a class="btn btn-primary" href="@Url.Action("IndexCrud", "Poster")"><i class="glyphicon glyphicon-menu-left"></i> Regresar al Listado</a>
+    </div>
+    }
+</div>
